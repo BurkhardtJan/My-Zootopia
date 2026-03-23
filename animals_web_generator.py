@@ -12,20 +12,21 @@ output = ''
 
 
 for animal_data in animals_data:
+    output += '<li class="cards__item">'
     if "name" in animal_data:
-        output += f"Name: {animal_data['name']}\n"
+        output += f"Name: {animal_data['name']}<br/>\n"
     if "diet" in animal_data["characteristics"]:
-        output += f"Diet: {animal_data['characteristics']['diet']}\n"
+        output += f"Diet: {animal_data['characteristics']['diet']}<br/>\n"
     if "locations" in animal_data:
-        output += f"Location: {animal_data['locations'][0]}\n"
+        output += f"Location: {animal_data['locations'][0]}<br/>\n"
     if "type" in animal_data["characteristics"]:
-        output += f"Type: {animal_data['characteristics']['type']}\n"
-    output += "\n"
+        output += f"Type: {animal_data['characteristics']['type']}<br/>\n"
+    output += '</li>'
 print(output)
 
 
 with open("animals_template.html", "r") as website:
-    template = website.read() 
+    template = website.read()
 html_with_animals = template.replace("__REPLACE_ANIMALS_INFO__", output)
 print(html_with_animals)
 
