@@ -7,11 +7,8 @@ def load_data(file_path):
         return json.load(handle)
 
 
-animals_data = load_data('animals_data.json')
-output = ''
-
-
-for animal_data in animals_data:
+def serialize_animal(animal_obj):
+    output = ''
     output += '<li class="cards__item">'
     output += f'<div class="card__title">{animal_data["name"]}</div>\n'
     output += '<p class="card__text">'
@@ -23,8 +20,14 @@ for animal_data in animals_data:
         output += f"<strong>Type</strong>: {animal_data['characteristics']['type']}<br/>\n"
     output += '</p>'
     output += '</li>'
-print(output)
+    return output
 
+
+animals_data = load_data('animals_data.json')
+output = ''
+for animal_data in animals_data:
+    output += serialize_animal(animals_data)
+print(output)
 
 with open("animals_template.html", "r") as website:
     template = website.read()
